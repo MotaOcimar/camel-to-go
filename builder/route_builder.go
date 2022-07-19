@@ -1,20 +1,38 @@
 package builder
 
 import (
+	cameltogo "github.com/MotaOcimar/camel-to-go"
 	"github.com/MotaOcimar/camel-to-go/model"
-	"github.com/MotaOcimar/camel-to-go/model/rest"
 )
 
 type RouteBuilder struct {
-	// TODO
+	BuilderSupport
+	routeCollection *model.RoutesDefinition
 }
 
-func (builder RouteBuilder) From(uri string) (route model.RouteDefinition) {
-	// TODO
-	return route
+// Setters and Getters
+
+func (builder *RouteBuilder) GetRouteCollection() *model.RoutesDefinition {
+	return builder.routeCollection
 }
 
-func (builder RouteBuilder) restConfiguration() (restDefConf rest.RestConfigurationDefinition) {
-	// TODO
-	return restDefConf
+func (builder *RouteBuilder) SetRouteCollection(routeCollection model.RoutesDefinition) {
+	*builder.routeCollection = routeCollection
+}
+
+// Public Methods
+
+func Configure() {}
+
+func (builder *RouteBuilder) From(uri string) (answer *model.RouteDefinition) {
+	builder.GetRouteCollection().SetContext(builder.GetContext())
+	answer = builder.GetRouteCollection().From(uri)
+	builder.configureRoute(answer)
+	return answer
+}
+
+// Private Methods
+
+func (builder *RouteBuilder) configureRoute(route *model.RouteDefinition) {
+	cameltogo.TrySetContext(route, builder.GetContext())
 }

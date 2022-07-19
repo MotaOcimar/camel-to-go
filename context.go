@@ -1,9 +1,13 @@
 package cameltogo
 
-func Start() {
+type Context struct {
 	// TODO
 }
 
-func AddRoutes(builder RoutesBuilder) {
+func (context *Context) Start() {
+	// TODO
+}
+
+func (context *Context) AddRoutes(builder RoutesBuilder) {
 	// TODO
 }

@@ -1,5 +1,5 @@
 package cameltogo
 
-type Expression struct {
+type Expression interface {
 	// TODO
 }
