@@ -5,14 +5,14 @@ import (
 )
 
 type BuilderSupport struct {
-	context cameltogo.Context
+	context *cameltogo.Context
 }
 
 // Setters and Getters
-func (builder *BuilderSupport) GetContext() cameltogo.Context {
+func (builder *BuilderSupport) GetContext() *cameltogo.Context {
 	return builder.context
 }
 
-func (builder *BuilderSupport) SetContext(context cameltogo.Context) {
+func (builder *BuilderSupport) SetContext(context *cameltogo.Context) {
 	builder.context = context
 }

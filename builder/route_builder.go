@@ -7,6 +7,7 @@ import (
 
 type RouteBuilder struct {
 	BuilderSupport
+
 	routeCollection *model.RoutesDefinition
 }
 

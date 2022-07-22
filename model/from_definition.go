@@ -2,23 +2,34 @@ package model
 
 type FromDefinition struct {
 	OptionalIdentifiedDefinition[FromDefinition]
-	uri string
+
+	uri *string
 }
 
 // Constructor
 func NewFromDefinition(uri string) *FromDefinition {
-	// TODO
-	return new(FromDefinition)
+	answer := new(FromDefinition)
+	answer.SetUri(uri)
+	return answer
 }
 
 // Getters and Setters
+
 func (fromDef *FromDefinition) SetUri(uri string) {
-	fromDef.clear()
-	fromDef.uri = uri
+	fromDef.uri = new(string)
+	*fromDef.uri = uri
 }
 
-// Private Methods
-func (fromDef *FromDefinition) clear() {
-	// TODO
-	fromDef.uri = ""
+// Public Methods
+
+func (fromDef *FromDefinition) GetLabel() string {
+
+	if fromDef.uri == nil {
+		return "no uri supplied"
+	}
+	return *fromDef.uri
+}
+
+func (fromDef *FromDefinition) String() string {
+	return "From[" + fromDef.GetLabel() + "]"
 }

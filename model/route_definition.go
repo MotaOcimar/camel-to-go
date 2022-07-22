@@ -2,13 +2,13 @@ package model
 
 type RouteDefinition struct {
 	ProcessorDefinition[RouteDefinition]
+
 	errorHandlerFactory ErrorHandlerFactory
+	input               *FromDefinition
 }
 
 // Constructor
-
 func NewRouteDefinition() (answer *RouteDefinition) {
-	// TODO
 	answer = new(RouteDefinition)
 	answer.self = answer
 	return answer
@@ -26,13 +26,18 @@ func (route *RouteDefinition) SetErrorHandlerFactoryIfNil(errorHandlerFactory Er
 	}
 }
 
+func (route *RouteDefinition) SetInput(input *FromDefinition) {
+	if route.input != nil && input != nil && route.input != input {
+		panic("Only one input is allowed per route. Cannot accept input: " + input.String())
+	}
+
+	route.input = input
+
+}
+
 // Public Methods
 
 func (route *RouteDefinition) From(uri string) *RouteDefinition {
 	route.SetInput(NewFromDefinition(uri))
 	return route
-}
-
-func (route *RouteDefinition) SetInput(input *FromDefinition) {
-	// TODO
 }

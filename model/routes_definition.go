@@ -1,11 +1,8 @@
 package model
 
-import (
-	cameltogo "github.com/MotaOcimar/camel-to-go"
-)
-
 type RoutesDefinition struct {
-	context             cameltogo.Context
+	OptionalIdentifiedDefinition[RouteDefinition]
+
 	routes              []*RouteDefinition
 	errorHandlerFactory ErrorHandlerFactory
 }
@@ -26,14 +23,6 @@ func (rd *RoutesDefinition) SetRoutes(routes []*RouteDefinition) {
 
 func (rd *RoutesDefinition) AddRoute(route *RouteDefinition) {
 	rd.SetRoutes(append(rd.GetRoutes(), route))
-}
-
-func (routes *RoutesDefinition) GetContext() (context cameltogo.Context) {
-	return routes.context
-}
-
-func (routes *RoutesDefinition) SetContext(context cameltogo.Context) {
-	routes.context = context
 }
 
 // Public Methods
