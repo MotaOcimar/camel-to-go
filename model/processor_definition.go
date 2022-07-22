@@ -6,6 +6,7 @@ import (
 
 type ProcessorDefinition[Type any] struct {
 	OptionalIdentifiedDefinition[Type]
+
 	self *Type
 }
 
