@@ -11,6 +11,7 @@ type RouteDefinition struct {
 func NewRouteDefinition() (answer *RouteDefinition) {
 	answer = new(RouteDefinition)
 	answer.self = answer
+	answer.isOutputNode = true
 	return answer
 }
 
