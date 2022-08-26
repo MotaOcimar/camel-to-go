@@ -43,6 +43,10 @@ func (routes *RoutesDefinition) Route(route *RouteDefinition) *RouteDefinition {
 	return route
 }
 
+func (routes *RoutesDefinition) PrepareRoute(route *RouteDefinition) {
+	// TODO
+}
+
 // Private Methods
 
 func (routes *RoutesDefinition) createRoute() (route *RouteDefinition) {
