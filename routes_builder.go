@@ -1,6 +1,7 @@
 package cameltogo
 
-type RoutesBuilder interface {
+type IRouteBuilder interface {
 	// TODO
-	AddRoutesToCamelContext(context *Context) error
+	AddRoutesToContext(context *Context) error
+	Configure()
 }

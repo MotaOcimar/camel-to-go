@@ -13,6 +13,8 @@ func (builder *BuilderSupport) GetContext() *cameltogo.Context {
 	return builder.context
 }
 
-func (builder *BuilderSupport) SetContext(context *cameltogo.Context) {
-	builder.context = context
+func (builder *RouteBuilder) SetContext(context *cameltogo.Context) {
+	if context != nil {
+		builder.context = context
+	}
 }

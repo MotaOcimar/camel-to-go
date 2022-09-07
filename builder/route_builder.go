@@ -23,7 +23,9 @@ func (builder *RouteBuilder) SetRouteCollection(routeCollection model.RoutesDefi
 
 // Public Methods
 
-func Configure() {}
+func (builder *RouteBuilder) Configure() {
+	// TODO
+}
 
 func (builder *RouteBuilder) From(uri string) (answer *model.RouteDefinition) {
 	builder.GetRouteCollection().SetContext(builder.GetContext())
@@ -32,9 +34,9 @@ func (builder *RouteBuilder) From(uri string) (answer *model.RouteDefinition) {
 	return answer
 }
 
-func (builder *RouteBuilder) AddRoutesToCamelContext(context *cameltogo.Context) error {
+func (builder *RouteBuilder) AddRoutesToContext(context *cameltogo.Context) error {
 	// must configure routes before rests
-	err := builder.ConfigureRoutes(context)
+	_, err := builder.ConfigureRoutes(context)
 	if err != nil {
 		return err
 	}
@@ -62,15 +64,23 @@ func (builder *RouteBuilder) AddRoutesToCamelContext(context *cameltogo.Context)
 	return err
 }
 
-func (builder *RouteBuilder) ConfigureRoutes(context *cameltogo.Context) (err error) {
-	// TODO
-	return err
+func (builder *RouteBuilder) ConfigureRoutes(context *cameltogo.Context) (*model.RoutesDefinition, error) {
+	builder.SetContext(context)
+	err := builder.checkInitialized(builder)
+	if err != nil {
+		return nil, err
+	}
+
+	builder.routeCollection.SetContext(context)
+	return builder.routeCollection, nil
 }
 
 func (builder *RouteBuilder) ConfigureRests(context *cameltogo.Context) (err error) {
 	// TODO
 	return err
 }
+
+// Private Methods
 
 func (builder *RouteBuilder) populateRoutes() (err error) {
 	// TODO
@@ -82,8 +92,11 @@ func (builder *RouteBuilder) populateRests() (err error) {
 	return err
 }
 
-// Private Methods
-
 func (builder *RouteBuilder) configureRoute(route *model.RouteDefinition) {
 	cameltogo.TrySetContext(route, builder.GetContext())
+}
+
+func (builder *RouteBuilder) checkInitialized(iBuilder cameltogo.IRouteBuilder) (err error) {
+	// TODO
+	return err
 }

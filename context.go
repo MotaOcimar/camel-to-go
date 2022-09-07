@@ -15,11 +15,11 @@ func (context *Context) Start() {
 	// TODO
 }
 
-func (context *Context) AddRoutes(builder RoutesBuilder) error {
+func (context *Context) AddRoutes(builder IRouteBuilder) error {
 
 	Build(context)
 	log.Debugf("Adding routes from builder: %+v", builder)
-	err := builder.AddRoutesToCamelContext(context)
+	err := builder.AddRoutesToContext(context)
 
 	return err
 }
